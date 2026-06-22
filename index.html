@@ -514,7 +514,7 @@ body {
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <span class="topbar-left">Wyoming Horsemen Estates &mdash; Uinta County, WY &mdash; 200 Acres</span>
+  <span class="topbar-left">Wyoming Horsemen Estates &mdash; <span id="topbar-location">Bear River, WY</span> &mdash; 200 Acres</span>
   <span class="topbar-right">Questions? <a href="mailto:Eric@GatewayRodeo.com">Eric@GatewayRodeo.com</a></span>
 </div>
 
@@ -531,15 +531,15 @@ body {
     <div>
       <div class="header-eyebrow">Property Document Library</div>
       <h1 class="header-title">Wyoming Horsemen Estates</h1>
-      <p class="header-desc" id="hero-desc">200 acres in Uinta County, Wyoming — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.</p>
+      <p class="header-desc" id="hero-desc">200 acres in Bear River, WY — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.</p>
       <div class="header-meta">
         <div class="meta-item">
           <span class="meta-label">Acreage</span>
           <span class="meta-value">~200 Acres</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">County</span>
-          <span class="meta-value">Uinta County, WY</span>
+          <span class="meta-label">Location</span>
+          <span class="meta-value" id="meta-location">Bear River, WY</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Lots</span>
@@ -566,7 +566,6 @@ body {
 <nav class="site-nav">
   <div class="nav-inner" id="nav-inner">
     <div class="nav-spacer"></div>
-    <button class="admin-trigger" id="admin-trigger">Admin</button>
   </div>
 </nav>
 
@@ -591,7 +590,10 @@ body {
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  Wyoming Horsemen Estates &mdash; Uinta County, Wyoming &mdash; All documents provided for informational purposes only.
+  <div>Wyoming Horsemen Estates &mdash; <span id="footer-location">Bear River, WY</span> &mdash; All documents provided for informational purposes only.</div>
+  <div style="margin-top:0.75rem;">
+    <button class="admin-trigger" id="admin-trigger">Admin</button>
+  </div>
 </footer>
 
 <!-- ── MODALS ── -->
@@ -674,6 +676,10 @@ body {
   <div class="modal">
     <div class="modal-title">Site settings</div>
     <div class="field">
+      <label>Location (shown in header &amp; footer)</label>
+      <input type="text" id="s-location" placeholder="e.g. Bear River, WY" />
+    </div>
+    <div class="field">
       <label>Status label (e.g. "Under Contract", "Available")</label>
       <input type="text" id="s-status" placeholder="Available" />
     </div>
@@ -723,7 +729,8 @@ const DEFAULT_SECTIONS = [
 
 const DEFAULT_SETTINGS = {
   status: 'Available',
-  hero: '200 acres in Uinta County, Wyoming — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.',
+  location: 'Bear River, WY',
+  hero: '200 acres in Bear River, WY — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.',
   contactName: 'Eric Nelson',
   contactEmail: 'Eric@GatewayRodeo.com',
   contactPhone: '801-230-0218'
@@ -766,6 +773,10 @@ function renderHeader() {
   document.getElementById('hero-desc').textContent = s.hero;
   document.getElementById('status-value').textContent = s.status;
   document.getElementById('contact-name').textContent = s.contactName;
+  const loc = s.location || 'Bear River, WY';
+  document.getElementById('topbar-location').textContent = loc;
+  document.getElementById('meta-location').textContent = loc;
+  document.getElementById('footer-location').textContent = loc;
   const el = document.getElementById('contact-email-link');
   el.textContent = s.contactEmail;
   el.href = 'mailto:' + s.contactEmail;
@@ -970,6 +981,7 @@ document.getElementById('new-section-name').addEventListener('keydown', e => { i
 // ── SETTINGS MODAL ──
 document.getElementById('site-settings-btn').addEventListener('click', () => {
   const s = state.settings;
+  document.getElementById('s-location').value = s.location || 'Bear River, WY';
   document.getElementById('s-status').value = s.status;
   document.getElementById('s-hero').value = s.hero;
   document.getElementById('s-cname').value = s.contactName;
@@ -979,6 +991,7 @@ document.getElementById('site-settings-btn').addEventListener('click', () => {
 });
 document.getElementById('settings-cancel').addEventListener('click', () => document.getElementById('settings-overlay').classList.add('hidden'));
 document.getElementById('settings-save').addEventListener('click', () => {
+  state.settings.location = document.getElementById('s-location').value.trim() || 'Bear River, WY';
   state.settings.status = document.getElementById('s-status').value.trim() || 'Available';
   state.settings.hero = document.getElementById('s-hero').value.trim();
   state.settings.contactName = document.getElementById('s-cname').value.trim();
