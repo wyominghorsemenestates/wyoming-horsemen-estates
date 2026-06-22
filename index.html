@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +59,18 @@ body {
   font-weight: 500;
 }
 .topbar-right a:hover { text-decoration: underline; }
+
+/* ── HERO IMAGE ── */
+.hero-image {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center 60%;
+  display: block;
+}
+@media (max-width: 620px) {
+  .hero-image { height: 220px; }
+}
 
 /* ── HEADER ── */
 .site-header {
@@ -505,6 +518,13 @@ body {
   <span class="topbar-right">Questions? <a href="mailto:Eric@GatewayRodeo.com">Eric@GatewayRodeo.com</a></span>
 </div>
 
+<!-- HERO IMAGE -->
+<img
+  class="hero-image"
+  src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1600&q=80&fit=crop"
+  alt="Horses grazing on open ranchland at golden hour"
+/>
+
 <!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
@@ -536,6 +556,7 @@ body {
         <div class="contact-card-label">Contact</div>
         <div class="contact-card-name" id="contact-name">Eric Nelson</div>
         <div class="contact-card-email"><a href="mailto:Eric@GatewayRodeo.com" id="contact-email-link">Eric@GatewayRodeo.com</a></div>
+        <div class="contact-card-email"><a href="tel:+18012300218" id="contact-phone-link">801-230-0218</a></div>
       </div>
     </div>
   </div>
@@ -668,6 +689,10 @@ body {
       <label>Contact email</label>
       <input type="email" id="s-cemail" />
     </div>
+    <div class="field">
+      <label>Contact phone</label>
+      <input type="tel" id="s-cphone" placeholder="e.g. 801-230-0218" />
+    </div>
     <div class="modal-actions">
       <button class="btn-cancel" id="settings-cancel">Cancel</button>
       <button class="btn-save" id="settings-save">Save</button>
@@ -700,7 +725,8 @@ const DEFAULT_SETTINGS = {
   status: 'Available',
   hero: '200 acres in Uinta County, Wyoming — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.',
   contactName: 'Eric Nelson',
-  contactEmail: 'Eric@GatewayRodeo.com'
+  contactEmail: 'Eric@GatewayRodeo.com',
+  contactPhone: '801-230-0218'
 };
 
 let state = {
@@ -745,6 +771,12 @@ function renderHeader() {
   el.href = 'mailto:' + s.contactEmail;
   document.querySelector('.topbar-right a').href = 'mailto:' + s.contactEmail;
   document.querySelector('.topbar-right a').textContent = s.contactEmail;
+  const ph = document.getElementById('contact-phone-link');
+  if (ph) {
+    ph.textContent = s.contactPhone || '';
+    ph.href = 'tel:+1' + (s.contactPhone || '').replace(/\D/g,'');
+    ph.parentElement.style.display = s.contactPhone ? '' : 'none';
+  }
 }
 
 function renderNav() {
@@ -942,6 +974,7 @@ document.getElementById('site-settings-btn').addEventListener('click', () => {
   document.getElementById('s-hero').value = s.hero;
   document.getElementById('s-cname').value = s.contactName;
   document.getElementById('s-cemail').value = s.contactEmail;
+  document.getElementById('s-cphone').value = s.contactPhone || '';
   document.getElementById('settings-overlay').classList.remove('hidden');
 });
 document.getElementById('settings-cancel').addEventListener('click', () => document.getElementById('settings-overlay').classList.add('hidden'));
@@ -950,6 +983,7 @@ document.getElementById('settings-save').addEventListener('click', () => {
   state.settings.hero = document.getElementById('s-hero').value.trim();
   state.settings.contactName = document.getElementById('s-cname').value.trim();
   state.settings.contactEmail = document.getElementById('s-cemail').value.trim();
+  state.settings.contactPhone = document.getElementById('s-cphone').value.trim();
   document.getElementById('settings-overlay').classList.add('hidden');
   save(); renderHeader();
 });
