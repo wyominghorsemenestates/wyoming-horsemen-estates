@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Wyoming Horsemen Estates — 200 acres in Uinta County, Wyoming. Document library for prospective buyers." />
+<title>Wyoming Horsemen Estates | Document Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:        #1C1A17;
+  --ink-mid:    #4A4540;
+  --ink-muted:  #8A847C;
+  --rule:       #D8D0C4;
+  --parchment:  #F7F3EC;
+  --white:      #FFFFFF;
+  --sage:       #4A5E4A;
+  --sage-light: #EAF0EA;
+  --gold:       #9A7B3C;
+  --gold-light: #F5EDD8;
+  --red-badge:  #7A1E1E;
+  --red-light:  #F5E8E8;
+  --blue-badge: #1E3A7A;
+  --blue-light: #E8EEF5;
+  --green-badge:#1A5C2A;
+  --green-light:#E8F3EB;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--parchment);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 0.55rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+}
+.topbar-left { color: rgba(247,243,236,0.55); }
+.topbar-right a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+}
+.topbar-right a:hover { text-decoration: underline; }
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 2.5rem 2rem 2rem;
+}
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+}
+.header-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+.header-desc {
+  font-size: 14.5px;
+  color: var(--ink-mid);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+.header-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.meta-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.meta-value {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.header-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+.contact-card {
+  background: var(--parchment);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  text-align: right;
+  min-width: 200px;
+}
+.contact-card-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.35rem;
+}
+.contact-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.contact-card-email {
+  font-size: 12.5px;
+  margin-top: 2px;
+}
+.contact-card-email a {
+  color: var(--sage);
+  text-decoration: none;
+  font-weight: 500;
+}
+.contact-card-email a:hover { text-decoration: underline; }
+
+/* ── NAV ── */
+.site-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 2rem;
+}
+.nav-jump {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  padding: 0.75rem 0.9rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.12s, border-color 0.12s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: 'Inter', sans-serif;
+}
+.nav-jump:hover { color: var(--ink); border-bottom-color: var(--rule); }
+.nav-jump.active { color: var(--sage); border-bottom-color: var(--sage); font-weight: 500; }
+.nav-spacer { flex: 1; }
+.admin-trigger {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.12s, color 0.12s;
+}
+.admin-trigger:hover { background: var(--parchment); color: var(--ink); }
+.admin-trigger.on { background: var(--sage); color: #FFF; border-color: var(--sage); }
+
+/* ── ADMIN BAR ── */
+.admin-bar {
+  background: var(--sage-light);
+  border-bottom: 1px solid #c8d8c8;
+  padding: 0.45rem 2rem;
+  font-size: 12.5px;
+  color: var(--sage);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+.admin-bar span { flex: 1; }
+.admin-bar button {
+  font-size: 12px;
+  color: var(--sage);
+  background: none;
+  border: 1px solid var(--sage);
+  border-radius: 4px;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+.admin-bar button:hover { background: var(--sage); color: #FFF; }
+
+/* ── BODY LAYOUT ── */
+.site-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ── SECTION ── */
+.doc-section {
+  margin-bottom: 3rem;
+}
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1.5px solid var(--rule);
+}
+.section-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.section-count {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+/* ── DOCUMENT ROW ── */
+.doc-list { display: flex; flex-direction: column; gap: 3px; }
+.doc-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 0.7rem 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition: border-color 0.12s, background 0.12s;
+}
+.doc-row:hover { border-color: var(--sage); background: var(--sage-light); }
+.doc-badge {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.badge-pdf { background: var(--red-light); color: var(--red-badge); }
+.badge-doc { background: var(--blue-light); color: var(--blue-badge); }
+.badge-img { background: var(--green-light); color: var(--green-badge); }
+.badge-vid { background: var(--gold-light); color: var(--gold); }
+.doc-info { min-width: 0; }
+.doc-name {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.doc-desc {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.doc-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.doc-size { font-size: 11px; color: var(--ink-muted); white-space: nowrap; }
+.doc-actions { display: flex; gap: 5px; }
+.doc-link {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--sage);
+  text-decoration: none;
+  padding: 3px 9px;
+  border: 1px solid rgba(74,94,74,0.3);
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+}
+.doc-link:hover { background: var(--sage); color: #FFF; border-color: var(--sage); }
+.delete-doc {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  display: none;
+  line-height: 1;
+  font-family: 'Inter', sans-serif;
+}
+.admin-mode .delete-doc { display: inline-block; }
+.delete-doc:hover { color: var(--red-badge); background: var(--red-light); }
+
+.empty-section {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 13px;
+  border: 1.5px dashed var(--rule);
+  border-radius: 6px;
+  background: none;
+}
+
+/* ── ADD DOC ── */
+.add-doc-row {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 0;
+  margin-top: 4px;
+}
+.admin-mode .add-doc-row { display: flex; }
+.add-doc-row button {
+  font-size: 12px;
+  color: var(--sage);
+  border: 1px dashed var(--sage);
+  background: none;
+  border-radius: 5px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.1s, color 0.1s;
+}
+.add-doc-row button:hover { background: var(--sage); color: #FFF; }
+
+/* ── GLOBAL ADD BAR ── */
+.admin-actions {
+  display: none;
+  gap: 8px;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+.admin-mode .admin-actions { display: flex; }
+.act-btn {
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.12s;
+}
+.act-btn:hover { opacity: 0.85; }
+.act-primary { background: var(--sage); color: #FFF; }
+.act-secondary { background: var(--parchment); color: var(--ink); border: 1px solid var(--rule); }
+
+/* ── FOOTER ── */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-muted);
+  background: var(--white);
+  margin-top: 2rem;
+}
+
+/* ── MODAL ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28,26,23,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+.modal {
+  background: var(--white);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 480px;
+  padding: 1.75rem;
+  border: 1px solid var(--rule);
+}
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--parchment);
+  outline: none;
+  transition: border-color 0.12s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--sage);
+  background: var(--white);
+}
+.field textarea { min-height: 64px; resize: vertical; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 1.25rem; }
+.btn-cancel {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: none;
+  color: var(--ink-muted);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+}
+.btn-cancel:hover { background: var(--parchment); }
+.btn-save {
+  padding: 0.5rem 1.25rem;
+  background: var(--sage);
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+.btn-save:hover { background: #3a4e3a; }
+.err { color: #7A1E1E; font-size: 12px; margin-top: 4px; display: none; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 620px) {
+  .header-inner { grid-template-columns: 1fr; }
+  .header-aside { align-items: flex-start; }
+  .contact-card { text-align: left; min-width: auto; }
+  .header-title { font-size: 28px; }
+  .site-body { padding: 1.25rem 1rem; }
+  .topbar { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar-left">Wyoming Horsemen Estates &mdash; Uinta County, WY &mdash; 200 Acres</span>
+  <span class="topbar-right">Questions? <a href="mailto:Eric@GatewayRodeo.com">Eric@GatewayRodeo.com</a></span>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-eyebrow">Property Document Library</div>
+      <h1 class="header-title">Wyoming Horsemen Estates</h1>
+      <p class="header-desc" id="hero-desc">200 acres in Uinta County, Wyoming — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.</p>
+      <div class="header-meta">
+        <div class="meta-item">
+          <span class="meta-label">Acreage</span>
+          <span class="meta-value">~200 Acres</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">County</span>
+          <span class="meta-value">Uinta County, WY</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Lots</span>
+          <span class="meta-value">77–80 Planned</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label" id="status-label">Status</span>
+          <span class="meta-value" id="status-value">Available</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-aside">
+      <div class="contact-card">
+        <div class="contact-card-label">Contact</div>
+        <div class="contact-card-name" id="contact-name">Eric Nelson</div>
+        <div class="contact-card-email"><a href="mailto:Eric@GatewayRodeo.com" id="contact-email-link">Eric@GatewayRodeo.com</a></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="site-nav">
+  <div class="nav-inner" id="nav-inner">
+    <div class="nav-spacer"></div>
+    <button class="admin-trigger" id="admin-trigger">Admin</button>
+  </div>
+</nav>
+
+<!-- ADMIN BAR -->
+<div class="admin-bar hidden" id="admin-bar">
+  <span>Admin mode active — add, edit, or remove documents and sections.</span>
+  <button id="site-settings-btn">Site settings</button>
+  <button id="manage-sections-btn">Manage sections</button>
+  <button id="exit-admin">Exit</button>
+</div>
+
+<!-- BODY -->
+<div class="site-body">
+
+  <div class="admin-actions" id="admin-actions">
+    <button class="act-btn act-primary" id="global-add-btn">+ Add document</button>
+  </div>
+
+  <div id="sections-container"></div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  Wyoming Horsemen Estates &mdash; Uinta County, Wyoming &mdash; All documents provided for informational purposes only.
+</footer>
+
+<!-- ── MODALS ── -->
+
+<!-- Login -->
+<div class="overlay hidden" id="login-overlay">
+  <div class="modal">
+    <div class="modal-title">Admin access</div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="login-pw" placeholder="Enter password" />
+      <div class="err" id="login-err">Incorrect password. Try again.</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="login-cancel">Cancel</button>
+      <button class="btn-save" id="login-submit">Enter</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add / Edit Doc -->
+<div class="overlay hidden" id="doc-overlay">
+  <div class="modal">
+    <div class="modal-title" id="doc-modal-title">Add document</div>
+    <div class="field">
+      <label>Section</label>
+      <select id="f-section"></select>
+    </div>
+    <div class="field">
+      <label>Document name</label>
+      <input type="text" id="f-name" placeholder="e.g. ALTA Survey — West Parcel" />
+    </div>
+    <div class="field">
+      <label>URL</label>
+      <input type="url" id="f-url" placeholder="https://…" />
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>File type</label>
+        <select id="f-type">
+          <option value="PDF">PDF</option>
+          <option value="DOC">Word Doc</option>
+          <option value="IMG">Image</option>
+          <option value="VID">Video</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>File size (optional)</label>
+        <input type="text" id="f-size" placeholder="e.g. 2.4 MB" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Description (optional)</label>
+      <textarea id="f-desc" placeholder="Brief note about this document…"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="doc-cancel">Cancel</button>
+      <button class="btn-save" id="doc-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Manage Sections -->
+<div class="overlay hidden" id="sections-overlay">
+  <div class="modal">
+    <div class="modal-title">Manage sections</div>
+    <div id="sections-list" style="margin-bottom:1rem;"></div>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="new-section-name" placeholder="New section name…" style="flex:1;padding:0.55rem 0.75rem;border:1px solid var(--rule);border-radius:5px;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:var(--parchment);outline:none;" />
+      <button class="btn-save" id="add-section-submit" style="white-space:nowrap;">+ Add</button>
+    </div>
+    <div class="modal-actions" style="margin-top:1rem;">
+      <button class="btn-save" id="sections-done">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Site Settings -->
+<div class="overlay hidden" id="settings-overlay">
+  <div class="modal">
+    <div class="modal-title">Site settings</div>
+    <div class="field">
+      <label>Status label (e.g. "Under Contract", "Available")</label>
+      <input type="text" id="s-status" placeholder="Available" />
+    </div>
+    <div class="field">
+      <label>Hero description</label>
+      <textarea id="s-hero" style="min-height:80px;"></textarea>
+    </div>
+    <div class="field">
+      <label>Contact name</label>
+      <input type="text" id="s-cname" />
+    </div>
+    <div class="field">
+      <label>Contact email</label>
+      <input type="email" id="s-cemail" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="settings-cancel">Cancel</button>
+      <button class="btn-save" id="settings-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──
+const ADMIN_PASSWORD = 'horsemen2026'; // change before going live
+
+// ── STATE ──
+// Documents are stored in the JS arrays below.
+// After deploying, use the Admin panel to add documents via the UI,
+// then export with the "Copy data" button (add this if needed),
+// or simply manage live on the site.
+
+const DEFAULT_SECTIONS = [
+  'Executive Summary',
+  'Property & Surveys',
+  'Zoning & Land Use',
+  'Infrastructure & Utilities',
+  'Title & Legal',
+  'Development Plans',
+  'Letters of Support',
+  'Transaction Process'
+];
+
+const DEFAULT_SETTINGS = {
+  status: 'Available',
+  hero: '200 acres in Uinta County, Wyoming — adjacent to Wyoming Downs. All due-diligence documents, surveys, and supporting materials are available below. No login required.',
+  contactName: 'Eric Nelson',
+  contactEmail: 'Eric@GatewayRodeo.com'
+};
+
+let state = {
+  settings: { ...DEFAULT_SETTINGS },
+  sections: [...DEFAULT_SECTIONS],
+  documents: []
+};
+
+let adminMode = false;
+let editingId = null;
+let addToSection = null;
+
+// ── STORAGE ──
+function save() {
+  try { localStorage.setItem('whe_v1', JSON.stringify(state)); } catch(e) {}
+}
+function load() {
+  try {
+    const raw = localStorage.getItem('whe_v1');
+    if (raw) state = JSON.parse(raw);
+  } catch(e) {}
+}
+
+// ── RENDER ──
+function render() {
+  renderHeader();
+  renderNav();
+  renderSections();
+  document.getElementById('admin-bar').classList.toggle('hidden', !adminMode);
+  document.getElementById('admin-trigger').classList.toggle('on', adminMode);
+  document.getElementById('admin-trigger').textContent = adminMode ? 'Exit Admin' : 'Admin';
+  document.body.classList.toggle('admin-mode', adminMode);
+}
+
+function renderHeader() {
+  const s = state.settings;
+  document.getElementById('hero-desc').textContent = s.hero;
+  document.getElementById('status-value').textContent = s.status;
+  document.getElementById('contact-name').textContent = s.contactName;
+  const el = document.getElementById('contact-email-link');
+  el.textContent = s.contactEmail;
+  el.href = 'mailto:' + s.contactEmail;
+  document.querySelector('.topbar-right a').href = 'mailto:' + s.contactEmail;
+  document.querySelector('.topbar-right a').textContent = s.contactEmail;
+}
+
+function renderNav() {
+  const inner = document.getElementById('nav-inner');
+  // remove old jumps
+  inner.querySelectorAll('.nav-jump').forEach(n => n.remove());
+  const spacer = inner.querySelector('.nav-spacer');
+  state.sections.forEach(sec => {
+    const a = document.createElement('a');
+    a.className = 'nav-jump';
+    a.textContent = sec;
+    a.href = '#sec-' + slug(sec);
+    inner.insertBefore(a, spacer);
+  });
+}
+
+function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g,'-'); }
+
+function badgeClass(t) {
+  if (t==='PDF') return 'badge-pdf';
+  if (t==='DOC') return 'badge-doc';
+  if (t==='IMG') return 'badge-img';
+  return 'badge-vid';
+}
+
+function renderSections() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  state.sections.forEach(sec => {
+    const docs = state.documents.filter(d => d.section === sec);
+    const div = document.createElement('div');
+    div.className = 'doc-section';
+    div.id = 'sec-' + slug(sec);
+
+    let docsHtml = '';
+    if (docs.length === 0) {
+      docsHtml = `<div class="empty-section">No documents in this section yet.</div>`;
+    } else {
+      docsHtml = '<div class="doc-list">' + docs.map(doc => `
+        <div class="doc-row" data-id="${doc.id}">
+          <span class="doc-badge ${badgeClass(doc.type)}">${doc.type}</span>
+          <div class="doc-info">
+            <div class="doc-name">${esc(doc.name)}</div>
+            ${doc.desc ? `<div class="doc-desc">${esc(doc.desc)}</div>` : ''}
+          </div>
+          <div class="doc-right">
+            ${doc.size ? `<span class="doc-size">${esc(doc.size)}</span>` : ''}
+            <div class="doc-actions">
+              ${doc.url ? `<a class="doc-link" href="${esc(doc.url)}" target="_blank" rel="noopener">View</a>` : ''}
+              ${doc.url ? `<a class="doc-link" href="${esc(doc.url)}" download>Download</a>` : ''}
+              <button class="delete-doc" data-id="${doc.id}" title="Delete">✕</button>
+            </div>
+          </div>
+        </div>`).join('') + '</div>';
+    }
+
+    div.innerHTML = `
+      <div class="section-heading">
+        <div class="section-name">${esc(sec)}</div>
+        <span class="section-count">${docs.length} document${docs.length!==1?'s':''}</span>
+      </div>
+      ${docsHtml}
+      <div class="add-doc-row">
+        <button class="add-to-sec" data-sec="${esc(sec)}">+ Add document to this section</button>
+      </div>`;
+
+    container.appendChild(div);
+  });
+
+  // events
+  container.querySelectorAll('.delete-doc').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (confirm('Delete this document?')) {
+        state.documents = state.documents.filter(d => d.id !== btn.dataset.id);
+        save(); renderNav(); renderSections();
+      }
+    });
+  });
+  container.querySelectorAll('.add-to-sec').forEach(btn => {
+    btn.addEventListener('click', () => openDocModal(null, btn.dataset.sec));
+  });
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── ADMIN ──
+document.getElementById('admin-trigger').addEventListener('click', () => {
+  if (adminMode) { adminMode = false; render(); }
+  else { showLogin(); }
+});
+document.getElementById('exit-admin').addEventListener('click', () => { adminMode = false; render(); });
+document.getElementById('global-add-btn').addEventListener('click', () => openDocModal(null, null));
+
+// ── LOGIN ──
+function showLogin() {
+  document.getElementById('login-pw').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  document.getElementById('login-overlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('login-pw').focus(), 50);
+}
+document.getElementById('login-cancel').addEventListener('click', () => document.getElementById('login-overlay').classList.add('hidden'));
+document.getElementById('login-submit').addEventListener('click', () => {
+  if (document.getElementById('login-pw').value === ADMIN_PASSWORD) {
+    document.getElementById('login-overlay').classList.add('hidden');
+    adminMode = true; render();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+});
+document.getElementById('login-pw').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('login-submit').click(); });
+
+// ── DOC MODAL ──
+function openDocModal(id, preSection) {
+  editingId = id;
+  addToSection = preSection;
+  const doc = id ? state.documents.find(d => d.id === id) : null;
+  document.getElementById('doc-modal-title').textContent = doc ? 'Edit document' : 'Add document';
+  const sel = document.getElementById('f-section');
+  sel.innerHTML = state.sections.map(s => `<option value="${s}" ${(preSection===s||(doc&&doc.section===s))?'selected':''}>${s}</option>`).join('');
+  document.getElementById('f-name').value = doc?.name || '';
+  document.getElementById('f-url').value = doc?.url || '';
+  document.getElementById('f-type').value = doc?.type || 'PDF';
+  document.getElementById('f-size').value = doc?.size || '';
+  document.getElementById('f-desc').value = doc?.desc || '';
+  document.getElementById('doc-overlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('f-name').focus(), 50);
+}
+document.getElementById('doc-cancel').addEventListener('click', () => document.getElementById('doc-overlay').classList.add('hidden'));
+document.getElementById('doc-save').addEventListener('click', () => {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { alert('Please enter a document name.'); return; }
+  const obj = {
+    id: editingId || (Date.now().toString(36) + Math.random().toString(36).slice(2,5)),
+    section: document.getElementById('f-section').value,
+    name,
+    url: document.getElementById('f-url').value.trim(),
+    type: document.getElementById('f-type').value,
+    size: document.getElementById('f-size').value.trim(),
+    desc: document.getElementById('f-desc').value.trim()
+  };
+  if (editingId) {
+    const idx = state.documents.findIndex(d => d.id === editingId);
+    if (idx > -1) state.documents[idx] = obj;
+  } else {
+    state.documents.push(obj);
+  }
+  document.getElementById('doc-overlay').classList.add('hidden');
+  save(); renderNav(); renderSections();
+});
+
+// ── SECTIONS MODAL ──
+document.getElementById('manage-sections-btn').addEventListener('click', openSectionsModal);
+document.getElementById('sections-done').addEventListener('click', () => document.getElementById('sections-overlay').classList.add('hidden'));
+
+function openSectionsModal() {
+  renderSectionsList();
+  document.getElementById('new-section-name').value = '';
+  document.getElementById('sections-overlay').classList.remove('hidden');
+}
+function renderSectionsList() {
+  const counts = {};
+  state.documents.forEach(d => { counts[d.section] = (counts[d.section]||0)+1; });
+  document.getElementById('sections-list').innerHTML = state.sections.map((sec, i) => `
+    <div style="display:flex;align-items:center;gap:8px;padding:0.5rem 0.6rem;background:var(--parchment);border:1px solid var(--rule);border-radius:5px;margin-bottom:4px;">
+      <span style="flex:1;font-size:13.5px;color:var(--ink);font-weight:500;">${esc(sec)}</span>
+      <span style="font-size:11px;color:var(--ink-muted);">${counts[sec]||0} docs</span>
+      <button onclick="deleteSection(${i})" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 5px;border-radius:3px;" onmouseover="this.style.color='#7A1E1E';this.style.background='#F5E8E8'" onmouseout="this.style.color='#ccc';this.style.background='none'">✕</button>
+    </div>`).join('');
+}
+window.deleteSection = function(i) {
+  const sec = state.sections[i];
+  if (confirm(`Delete section "${sec}"? Documents in it will also be removed.`)) {
+    state.documents = state.documents.filter(d => d.section !== sec);
+    state.sections.splice(i, 1);
+    save(); render(); renderSectionsList();
+  }
+};
+document.getElementById('add-section-submit').addEventListener('click', () => {
+  const name = document.getElementById('new-section-name').value.trim();
+  if (!name) return;
+  if (state.sections.includes(name)) { alert('Section already exists.'); return; }
+  state.sections.push(name);
+  document.getElementById('new-section-name').value = '';
+  save(); render(); renderSectionsList();
+});
+document.getElementById('new-section-name').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('add-section-submit').click(); });
+
+// ── SETTINGS MODAL ──
+document.getElementById('site-settings-btn').addEventListener('click', () => {
+  const s = state.settings;
+  document.getElementById('s-status').value = s.status;
+  document.getElementById('s-hero').value = s.hero;
+  document.getElementById('s-cname').value = s.contactName;
+  document.getElementById('s-cemail').value = s.contactEmail;
+  document.getElementById('settings-overlay').classList.remove('hidden');
+});
+document.getElementById('settings-cancel').addEventListener('click', () => document.getElementById('settings-overlay').classList.add('hidden'));
+document.getElementById('settings-save').addEventListener('click', () => {
+  state.settings.status = document.getElementById('s-status').value.trim() || 'Available';
+  state.settings.hero = document.getElementById('s-hero').value.trim();
+  state.settings.contactName = document.getElementById('s-cname').value.trim();
+  state.settings.contactEmail = document.getElementById('s-cemail').value.trim();
+  document.getElementById('settings-overlay').classList.add('hidden');
+  save(); renderHeader();
+});
+
+// ── INIT ──
+load();
+render();
+</script>
+</body>
+</html>
