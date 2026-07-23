@@ -49,6 +49,7 @@ export default async function handler(req, res) {
         access: 'public',
         contentType: 'application/json',
         allowOverwrite: true,
+        addRandomSuffix: false,
         token: process.env.WHE_BLOB_READ_WRITE_TOKEN,
       });
 
