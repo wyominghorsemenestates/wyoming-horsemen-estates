@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -711,10 +710,9 @@ body {
 const ADMIN_PASSWORD = 'horsemen2026'; // change before going live
 
 // ── STATE ──
-// Documents are stored in the JS arrays below.
-// After deploying, use the Admin panel to add documents via the UI,
-// then export with the "Copy data" button (add this if needed),
-// or simply manage live on the site.
+// Documents are now stored server-side (via /api/documents, backed by
+// Vercel Blob storage) so every visitor sees the same shared data,
+// instead of each browser having its own separate copy.
 
 const DEFAULT_SECTIONS = [
   'Executive Summary',
@@ -746,15 +744,29 @@ let adminMode = false;
 let editingId = null;
 let addToSection = null;
 
-// ── STORAGE ──
-function save() {
-  try { localStorage.setItem('whe_v1', JSON.stringify(state)); } catch(e) {}
-}
-function load() {
+// ── STORAGE (now server-side, shared by everyone) ──
+async function save() {
   try {
-    const raw = localStorage.getItem('whe_v1');
-    if (raw) state = JSON.parse(raw);
-  } catch(e) {}
+    await fetch('/api/documents', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-admin-key': ADMIN_PASSWORD
+      },
+      body: JSON.stringify(state)
+    });
+  } catch (e) {
+    console.error('Save failed', e);
+  }
+}
+async function load() {
+  try {
+    const res = await fetch('/api/documents');
+    const data = await res.json();
+    if (data) state = data;
+  } catch (e) {
+    console.error('Load failed', e);
+  }
 }
 
 // ── RENDER ──
@@ -1002,8 +1014,10 @@ document.getElementById('settings-save').addEventListener('click', () => {
 });
 
 // ── INIT ──
-load();
-render();
+(async () => {
+  await load();
+  render();
+})();
 </script>
 </body>
 </html>
