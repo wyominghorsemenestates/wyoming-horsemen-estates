@@ -6,7 +6,10 @@ const PATHNAME = 'whe-data.json';
 
 export default async function handler(req, res) {
   try {
-    if (req.method === 'GET' && req.query?.debug === '1') {
+    const url = new URL(req.url, `https://${req.headers.host}`);
+    const isDebug = url.searchParams.get('debug') === '1';
+
+    if (req.method === 'GET' && isDebug) {
       // TEMPORARY diagnostic endpoint — shows which relevant env var
       // NAMES exist and their lengths, without revealing their values.
       const relevantKeys = Object.keys(process.env).filter(k =>
