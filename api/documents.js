@@ -6,13 +6,24 @@ const PATHNAME = 'whe-data.json';
 
 export default async function handler(req, res) {
   try {
+    if (req.method === 'GET' && req.query?.debug === '1') {
+      // TEMPORARY diagnostic endpoint — shows which relevant env var
+      // NAMES exist and their lengths, without revealing their values.
+      const relevantKeys = Object.keys(process.env).filter(k =>
+        k.includes('BLOB') || k.includes('WHE') || k === 'ADMIN_API_KEY'
+      );
+      const info = {};
+      relevantKeys.forEach(k => { info[k] = `present, length ${process.env[k].length}`; });
+      return res.status(200).json({ envVarsSeen: info });
+    }
+
     if (req.method === 'GET') {
       // Try to fetch the existing saved data. If nothing has been saved
       // yet (first time site is used), return null so the front-end
       // falls back to its built-in defaults.
       try {
         const blob = await head(PATHNAME, {
-          storeId: process.env.WHE_BLOB_READ_WRITE_TOKEN,
+          token: process.env.WHE_BLOB_READ_WRITE_TOKEN,
         });
         const response = await fetch(blob.url);
         const data = await response.json();
@@ -35,7 +46,7 @@ export default async function handler(req, res) {
         access: 'public',
         contentType: 'application/json',
         allowOverwrite: true,
-        storeId: process.env.WHE_STORE_ID,
+        token: process.env.WHE_BLOB_READ_WRITE_TOKEN,
       });
 
       return res.status(200).json({ ok: true });
