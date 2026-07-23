@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       // falls back to its built-in defaults.
       try {
         const blob = await head(PATHNAME, {
-          token: process.env.WHE_BLOB_READ_WRITE_TOKEN,
+          storeId: process.env.WHE_STORE_ID,
         });
         const response = await fetch(blob.url);
         const data = await response.json();
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
         access: 'public',
         contentType: 'application/json',
         allowOverwrite: true,
-        token: process.env.WHE_BLOB_READ_WRITE_TOKEN,
+        storeId: process.env.WHE_STORE_ID,
       });
 
       return res.status(200).json({ ok: true });
