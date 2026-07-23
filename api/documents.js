@@ -6,20 +6,6 @@ const PATHNAME = 'whe-data.json';
 
 export default async function handler(req, res) {
   try {
-    const url = new URL(req.url, `https://${req.headers.host}`);
-    const isDebug = url.searchParams.get('debug') === '1';
-
-    if (req.method === 'GET' && isDebug) {
-      // TEMPORARY diagnostic endpoint — shows which relevant env var
-      // NAMES exist and their lengths, without revealing their values.
-      const relevantKeys = Object.keys(process.env).filter(k =>
-        k.includes('BLOB') || k.includes('WHE') || k === 'ADMIN_API_KEY'
-      );
-      const info = {};
-      relevantKeys.forEach(k => { info[k] = `present, length ${process.env[k].length}`; });
-      return res.status(200).json({ envVarsSeen: info });
-    }
-
     if (req.method === 'GET') {
       // Try to fetch the existing saved data. If nothing has been saved
       // yet (first time site is used), return null so the front-end
